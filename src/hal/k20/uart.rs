@@ -23,6 +23,7 @@ use drivers::chario::CharIO;
 use hal::uart;
 
 use self::UARTPeripheral::*;
+use super::sim;
 
 #[path="../../util/wait_for.rs"]
 #[macro_use] mod wait_for;
@@ -77,6 +78,8 @@ impl UART {
     let uart = UART {
       reg: peripheral.reg()
     };
+    // enable peripheral clock
+    sim::enable_UART(peripheral);
     uart.set_baud_rate(baudrate);
     uart.set_mode(reg::UART_c1_m::from_u8(word_len), parity, StopBit::from_u8(stop_bits));
     uart.set_fifo_enabled(true);

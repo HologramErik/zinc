@@ -16,6 +16,7 @@
 //! HAL for Kinetis SIM module.
 
 use super::pin;
+use super::uart;
 
 /// Enable clock to a PORTx peripheral
 #[allow(non_snake_case)]
@@ -27,6 +28,17 @@ pub fn enable_PORT(port: pin::Port) {
     PortC => {reg::SIM.scgc5.set_portc(true);},
     PortD => {reg::SIM.scgc5.set_portd(true);},
     PortE => {reg::SIM.scgc5.set_porte(true);},
+  }
+}
+
+/// Enable clock to a PORTx peripheral
+#[allow(non_snake_case)]
+pub fn enable_UART(uart: uart::UARTPeripheral) {
+  use hal::k20::uart::UARTPeripheral::*;
+  match uart {
+    UART0 => {reg::SIM.scgc4.set_uart0(true);},
+    UART1 => {reg::SIM.scgc4.set_uart1(true);},
+    UART2 => {reg::SIM.scgc4.set_uart2(true);},
   }
 }
 

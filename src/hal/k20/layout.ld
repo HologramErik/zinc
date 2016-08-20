@@ -15,10 +15,10 @@ ENTRY(main)
 /* For MK20DX32 */
 MEMORY
 {
-    VECT (R)      : ORIGIN = 0x00000000, LENGTH = 0x3FC  /* Vector area */
-    FIRC (R)      : ORIGIN = 0x000003FC, LENGTH = 4      /* Custom IRC user trim */
-    FCFG (R)      : ORIGIN = 0x00000400, LENGTH = 16     /* Flash config */
-    FLASH (RX)    : ORIGIN = 0x00000410, LENGTH = 32K - 0x410
+    VECT (R)      : ORIGIN = 0x00008000, LENGTH = 0x3FC  /* Vector area */
+    FIRC (R)      : ORIGIN = 0x000083FC, LENGTH = 4      /* Custom IRC user trim */
+    FCFG (R)      : ORIGIN = 0x00008400, LENGTH = 16     /* Flash config */
+    FLASH (RX)    : ORIGIN = 0x00008410, LENGTH = 32K - 0x410
     RAM (WAIL)    : ORIGIN = 0x20000000 - 8K / 2, LENGTH = 8K
 }
 
@@ -90,4 +90,3 @@ SECTIONS
         *(.debug_gdb_scripts)
     }
 }
-
